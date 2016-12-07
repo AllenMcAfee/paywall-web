@@ -163,6 +163,7 @@ function payWalletBalance(balanceCb) {
 function addressBalance(address, balanceCb) {
 	if (client === undefined) {
 		setTimeout(addressBalance(address, balanceCb), 250);
+		return;
 	}
 
 	client.address(address).then(function(address) {
