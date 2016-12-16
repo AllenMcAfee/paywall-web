@@ -147,7 +147,7 @@ function setPayWallet(err, wallet) {
 
 function payWalletBalance(balanceCb) {
 	if (payWallet === undefined) {
-		setTimeout(payWalletBalance, 250);
+		setTimeout(payWalletBalance, 250, balanceCb);
 		return;
 	}
 
@@ -162,7 +162,7 @@ function payWalletBalance(balanceCb) {
 
 function addressBalance(address, balanceCb) {
 	if (client === undefined) {
-		setTimeout(addressBalance(address, balanceCb), 250);
+		setTimeout(addressBalance, 250, address, balanceCb);
 		return;
 	}
 
@@ -175,7 +175,8 @@ function addressBalance(address, balanceCb) {
 
 function addressUnconfirmedReceived(address, unconfRecvd) {
 	if (client === undefined) {
-		setTimeout(addressUnconfirmedReceived(address, unconfRecvd), 250);
+		setTimeout(addressUnconfirmedReceived, 250, address, unconfRecvd);
+		return;
 	}
 
 	client.address(address).then(function(address) {
@@ -203,7 +204,7 @@ function handleError(err) {
 
 function receivePayment(recvAddress, amountBTC, addressCb) {
 	if (payWallet === undefined) {
-		setTimeout(receivePayment(recvAddress, amountBTC, addressCb), 250);
+		setTimeout(receivePayment, 250, recvAddress, amountBTC, addressCb);
 		return;
 	}
     let amountSatoshis = blocktrail.toSatoshi(amountBTC);
